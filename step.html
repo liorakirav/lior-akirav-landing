@@ -11,6 +11,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11031932787"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-11031932787');
+</script>
 <style>
   :root{
     --bg:#0B0B0D;--bg-2:#121216;--panel:#16161B;--ink:#F3F0EA;--muted:#A5A3A0;
@@ -461,7 +469,7 @@
     if(!name||!phone||!email||!consent){ alert('נא למלא שם, טלפון, אימייל ולאשר את הפנייה.'); return; }
     submitBtn.disabled=true; submitBtn.textContent='שולח...';
     fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
-      .then(function(r){ if(r.ok){ form.style.display='none'; document.getElementById('formOk').style.display='block'; } else { throw new Error('server'); } })
+      .then(function(r){ if(r.ok){ if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-11031932787/zv1yCMnAyY0cEPPet4wp','value':1.0,'currency':'ILS'});} form.style.display='none'; document.getElementById('formOk').style.display='block'; } else { throw new Error('server'); } })
       .catch(function(){ alert('אירעה שגיאה בשליחה. נסה שוב בבקשה.'); submitBtn.disabled=false; submitBtn.textContent=submitLabel; });
   });
 </script>
