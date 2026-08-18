@@ -168,6 +168,13 @@
   .video-cap{text-align:center;color:var(--muted);font-size:14.5px;margin-top:12px}
   .video-cap a{color:var(--accent-2);text-decoration:underline}
 
+  .wa-float{position:fixed;bottom:22px;inset-inline-start:22px;z-index:80;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.75);transition:transform .18s}
+  .wa-float:hover{transform:scale(1.08)}
+  .talk-now{margin-top:20px;padding-top:20px;border-top:1px solid var(--line);text-align:center}
+  .talk-now p{font-size:14.5px;color:var(--muted);margin-bottom:10px}
+  .btn-wa{background:#25D366;color:#08331c;width:100%;font-weight:800}
+  .btn-wa:hover{background:#22c35e}
+  @media(max-width:640px){.wa-float{bottom:18px}}
   html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
   html.js .reveal.in{opacity:1;transform:none}
 </style>
@@ -465,6 +472,10 @@
         </label>
         <button class="btn btn-accent" type="submit">בוא נעשה את הצעד הבא →</button>
       </form>
+      <div class="talk-now">
+        <p>מעדיף לדבר במקום למלא טופס?</p>
+        <a class="btn btn-wa" href="https://api.whatsapp.com/send?phone=972544655937&text=%D7%94%D7%99%D7%99%20%D7%9C%D7%99%D7%90%D7%95%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%22%D7%9C%D7%A2%D7%A9%D7%95%D7%AA%20%D7%A6%D7%A2%D7%93%22%20%D7%95%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%93%D7%91%D7%A8" target="_blank" rel="noopener">שלח לי הודעה בוואטסאפ ←</a>
+      </div>
       <div class="form-ok" id="formOk">
         <h3>קיבלתי. הפרטים אצלי.</h3>
         <p>אחזור אליך אישית בהקדם. זהו — עשית צעד.</p>
@@ -481,8 +492,11 @@
   </div>
 </footer>
 
+<a class="wa-float" href="https://api.whatsapp.com/send?phone=972544655937&text=%D7%94%D7%99%D7%99%20%D7%9C%D7%99%D7%90%D7%95%D7%A8%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%22%D7%9C%D7%A2%D7%A9%D7%95%D7%AA%20%D7%A6%D7%A2%D7%93%22%20%D7%95%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%93%D7%91%D7%A8" target="_blank" rel="noopener" aria-label="וואטסאפ עם ליאור"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07a8.18 8.18 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.07c-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.71.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.35zM12.05 21.5a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.56.93.95-3.47-.22-.36a9.42 9.42 0 1 1 7.97 4.42zM12.05 1A11 11 0 0 0 2.5 17.5L1 23l5.65-1.48A11 11 0 1 0 12.05 1z"/></svg></a>
+
 <script>
   document.documentElement.classList.add('js');
+  document.querySelectorAll('a[href^="tel:"], a[href*="api.whatsapp.com"]').forEach(function(link){link.addEventListener('click',function(){if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-11031932787/zjp2CNSntoMYEPPet4wp'});}});});
   document.getElementById('year').textContent = new Date().getFullYear();
   const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
