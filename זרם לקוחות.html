@@ -1,0 +1,315 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>זרם לקוחות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Suez+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --paper:#EEF2F0; --surface:#FFFFFF; --ink:#12232B; --muted:#4E6068; --line:#CBD6D3;
+  --deep:#0E2A33; --deep-ink:#E8F0EE; --copper:#B95F22; --copper-soft:#F6E3D4; --water:#1F7A86;
+  --wa:#1C8C4E;
+  --display:"Suez One","Arial Hebrew",Arial,sans-serif;
+  --body:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;--paper:#0C1A20;--surface:#132730;--ink:#E6EEEC;--muted:#9DB0B4;--line:#26414B;
+  --deep:#081419;--deep-ink:#E6EEEC;--copper:#E08A4C;--copper-soft:#3A2517;--water:#5FB6C1;--wa:#35B26C;}}
+:root[data-theme="dark"]{
+  color-scheme:dark;--paper:#0C1A20;--surface:#132730;--ink:#E6EEEC;--muted:#9DB0B4;--line:#26414B;
+  --deep:#081419;--deep-ink:#E6EEEC;--copper:#E08A4C;--copper-soft:#3A2517;--water:#5FB6C1;--wa:#35B26C;}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65;direction:rtl;padding-inline:20px;padding-block:0}
+.wrap{max-width:1080px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.2;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--copper);outline-offset:3px}
+
+header.top{display:flex;justify-content:space-between;align-items:center;padding-block:22px;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-size:22px;display:flex;align-items:center;gap:10px}
+.brand svg{width:30px;height:30px;flex:none}
+.by{color:var(--muted);font-size:14px}
+
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-block:28px 56px}
+.eyebrow{font-size:14px;letter-spacing:.04em;color:var(--water);font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(34px,5.4vw,58px)}
+.hero h1 span{color:var(--copper)}
+.lede{margin-top:18px;font-size:19px;color:var(--muted);max-width:34em}
+.price{margin-top:28px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.price .old{font-family:var(--mono);color:var(--muted);text-decoration:line-through;text-decoration-color:var(--copper);text-decoration-thickness:2px;font-size:20px}
+.price .now{font-family:var(--display);font-size:52px;color:var(--ink);line-height:1}
+.price .unit{font-size:16px;color:var(--muted)}
+.cta-row{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;font-size:18px;padding:15px 26px;border-radius:999px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:22px;height:22px}
+.small{font-size:14px;color:var(--muted)}
+
+/* call log */
+.log{background:var(--deep);color:var(--deep-ink);border-radius:18px;padding:22px;font-size:15px;position:relative}
+.log-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:13px;opacity:.75}
+.tag{border:1px solid currentColor;border-radius:999px;padding:2px 10px;font-size:12px}
+.call{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding-block:12px;border-top:1px solid rgba(255,255,255,.12)}
+.call:first-of-type{border-top:0}
+.dot{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center}
+.dot svg{width:18px;height:18px}
+.call b{display:block;font-weight:500}
+.call small{opacity:.65;font-size:13px}
+.dur{font-family:var(--mono);font-size:14px;opacity:.85}
+.call.ring .dot{background:var(--copper);animation:ring 1.6s ease-in-out infinite}
+@keyframes ring{0%,100%{transform:rotate(0)}10%{transform:rotate(-14deg)}20%{transform:rotate(12deg)}30%{transform:rotate(-8deg)}40%{transform:rotate(0)}}
+@media (prefers-reduced-motion:reduce){.call.ring .dot{animation:none}.btn{transition:none}}
+.log-foot{margin-top:14px;padding-top:14px;border-top:1px dashed rgba(255,255,255,.25);display:flex;justify-content:space-between;font-size:13px;opacity:.8}
+
+section{padding-block:56px;border-top:1px solid var(--line)}
+.sec-title{font-size:clamp(26px,3.4vw,38px);max-width:20em}
+.sec-sub{margin-top:12px;color:var(--muted);max-width:40em}
+
+.search{margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;max-width:620px}
+.q{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-size:16px}
+.q svg{width:18px;height:18px;flex:none;color:var(--muted)}
+.results{margin-top:14px;display:grid;gap:10px}
+.r{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:15px}
+.r .pos{font-family:var(--mono);color:var(--muted);width:2ch}
+.r .name{flex:1}
+.r .stars{font-family:var(--mono);color:var(--copper);font-size:14px}
+.r.you{background:var(--copper-soft);border-radius:10px;padding:8px 10px;font-weight:700}
+.r:not(.you){padding-inline:10px}
+
+.parts{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.part{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.part .ic{width:44px;height:44px;border-radius:12px;background:var(--copper-soft);color:var(--copper);display:grid;place-items:center}
+.part .ic svg{width:24px;height:24px}
+.part h3{font-size:22px}
+.part ul{margin:0;padding-inline-start:18px;color:var(--muted);font-size:15.5px;display:grid;gap:6px}
+
+.steps{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.step{counter-increment:s;display:grid;gap:8px}
+.step::before{content:counter(s);font-family:var(--mono);font-size:14px;color:var(--copper);border:1.5px solid var(--copper);width:32px;height:32px;border-radius:50%;display:grid;place-items:center}
+.step h3{font-size:20px}
+.step p{color:var(--muted);font-size:15.5px}
+
+.extra{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.extra div{border:1.5px dashed var(--line);border-radius:14px;padding:18px 20px}
+.extra b{display:block;margin-bottom:4px}
+.extra p{color:var(--muted);font-size:15.5px}
+
+.fine{margin-top:22px;font-size:14px;color:var(--muted);max-width:44em}
+
+details{border-bottom:1px solid var(--line);padding-block:16px;max-width:760px}
+details summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details summary::after{content:"+";font-family:var(--mono);color:var(--copper)}
+details[open] summary::after{content:"−"}
+details p{margin-top:10px;color:var(--muted)}
+.faq{margin-top:22px}
+
+.final{background:var(--deep);color:var(--deep-ink);border-radius:22px;padding:44px 32px;margin-block:20px 48px;display:grid;gap:18px;justify-items:start}
+.final h2{font-size:clamp(28px,4vw,42px)}
+.final .price .now{color:var(--deep-ink)}
+.final .price .old,.final .price .unit{color:var(--deep-ink);opacity:.7}
+.num{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:15px;opacity:.9}
+.num code{font-family:var(--mono);font-size:17px;user-select:all;background:rgba(255,255,255,.08);padding:4px 10px;border-radius:8px}
+.copy{background:none;border:1px solid currentColor;color:inherit;border-radius:999px;padding:4px 12px;font:inherit;font-size:13px;cursor:pointer}
+
+.deal{margin-top:28px;display:grid;gap:10px;justify-items:start}
+.deal .price{margin-top:0}
+.badge{display:inline-block;background:var(--copper);color:#fff;font-weight:700;font-size:14px;padding:5px 14px;border-radius:999px}
+.why{font-size:15px;color:var(--muted);max-width:32em}
+.final .badge{background:var(--copper)}
+.trades{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-block:18px 26px}
+.trades-label{font-weight:700;margin-inline-end:6px}
+.chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:15px}
+.plan{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+.plan-main{display:grid;gap:12px;justify-items:start}
+.plan-main .price{margin-top:0}
+.plan-name{font-family:var(--display);font-size:24px}
+.plan-list{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.plan-list li{display:flex;gap:10px;align-items:baseline}
+.plan-list li::before{content:"✓";color:var(--wa);font-weight:700}
+@media (max-width:860px){.plan{grid-template-columns:1fr;padding:22px}}
+footer{padding-block:0 32px;font-size:13px;color:var(--muted)}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;gap:30px}
+  .parts,.steps{grid-template-columns:1fr}
+  .extra{grid-template-columns:1fr}
+}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 22h9a3 3 0 0 0 3-3V9a3 3 0 0 1 3-3h9" stroke="var(--copper)" stroke-width="4" stroke-linecap="round"/><circle cx="28" cy="6" r="3" fill="var(--water)"/></svg>
+    זרם לקוחות
+  </div>
+  <div class="by">גיוס לקוחות לאנשי מקצוע שעובדים עם הידיים</div>
+</header>
+
+<div class="hero">
+  <div>
+    <div class="eyebrow">לאינסטלטורים, חשמלאים, שיפוצניקים וכל מי שעובד עם הידיים</div>
+    <h1>הטלפון מצלצל.<br><span>מלקוחות באזור שלך.</span></h1>
+    <p class="lede">קמפיין בגוגל שמביא רק שיחות טלפון, פרופיל גוגל עסקים שאוסף ביקורות ועולה במפות, וניהול חודשי שדואג שכל שקל שאתה משלם לגוגל יביא לקוח.</p>
+    <div class="deal">
+      <span class="badge">עכשיו 77% הנחה בדמי הניהול החודשיים!</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn wa-link" href="https://wa.me/972544655937" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+        דבר איתי בוואטסאפ
+      </a>
+      <span class="small">שיחת היכרות קצרה, בלי התחייבות</span>
+    </div>
+  </div>
+
+  <div class="log" aria-label="דוגמה ללוח שיחות נכנסות">
+    <div class="log-head"><span>שיחות מהקמפיין · היום</span><span class="tag">דוגמה להמחשה</span></div>
+    <div class="call ring">
+      <div class="dot"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z"/></svg></div>
+      <div><b>נכנסת עכשיו</b><small>חיפש: איתור נזילות רמת גן</small></div>
+      <div class="dur">··· </div>
+    </div>
+    <div class="call">
+      <div class="dot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z"/></svg></div>
+      <div><b>11:42</b><small>חיפש: חשמלאי מוסמך פתח תקווה</small></div>
+      <div class="dur">3:18</div>
+    </div>
+    <div class="call">
+      <div class="dot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z"/></svg></div>
+      <div><b>09:05</b><small>חיפש: אינסטלטור גבעתיים</small></div>
+      <div class="dur">2:04</div>
+    </div>
+    <div class="call">
+      <div class="dot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z"/></svg></div>
+      <div><b>07:51</b><small>חיפש: שיפוץ אמבטיה חולון</small></div>
+      <div class="dur">4:37</div>
+    </div>
+    <div class="log-foot"><span>נספרות רק שיחות מעל 60 שניות</span><span>דוח מלא בסוף החודש</span></div>
+  </div>
+</div>
+
+<div class="trades" aria-label="למי זה מתאים">
+  <span class="trades-label">זרם לקוחות מגייס לקוחות ל:</span>
+  <span class="chip">אינסטלטורים</span><span class="chip">חשמלאים</span><span class="chip">שיפוצניקים</span><span class="chip">מזגנאים</span><span class="chip">מסגרים</span><span class="chip">הנדימנים</span><span class="chip">וכל מי שעובד עם הידיים</span>
+</div>
+
+<section>
+  <h2 class="sec-title">כשיש נזילה או קצר, אף אחד לא משווה אתרים. מחפשים בגוגל ומתקשרים לראשון.</h2>
+  <p class="sec-sub">מי שמחפש "אינסטלטור" או "חשמלאי" עם שם העיר צריך מישהו עכשיו. הוא מתקשר לאחד משלושת הראשונים שהוא רואה, ומי שמופיע למטה פשוט לא קיים בשבילו. מכונת הלקוחות שמה אותך למעלה, בדיוק ברגע הזה.</p>
+  <div class="search" aria-label="דוגמה לתוצאות חיפוש">
+    <div class="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>אינסטלטור ברמת גן</div>
+    <div class="results">
+      <div class="r you"><span class="pos">1</span><span class="name">העסק שלך · מודעה עם כפתור חיוג</span><span class="stars">★ 4.9</span></div>
+      <div class="r"><span class="pos">2</span><span class="name">מתחרה</span><span class="stars">★ 4.3</span></div>
+      <div class="r"><span class="pos">3</span><span class="name">מתחרה</span><span class="stars">★ 4.1</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">מה יש במכונה</h2>
+  <p class="sec-sub">שלושה חלקים שעובדים יחד. כל אחד לבד עוזר, ביחד הם מביאים שיחות באופן קבוע.</p>
+  <div class="parts">
+    <div class="part">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z"/></svg></div>
+      <h3>קמפיין שיחות בגוגל</h3>
+      <ul>
+        <li>מודעות שהמטרה שלהן אחת: שיתקשרו אליך</li>
+        <li>מילות חיפוש מדויקות לפי השירות והעיר שלך</li>
+        <li>סינון של חיפושים לא רלוונטיים: חיפושי עבודה, קורסים, "איך לתקן לבד"</li>
+        <li>מופיע רק באזורים ובשעות שאתה עובד</li>
+      </ul>
+    </div>
+    <div class="part">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg></div>
+      <h3>קמפיין דירוגים בגוגל עסקים</h3>
+      <ul>
+        <li>שיפור מלא של הפרופיל: שירותים, אזורים, תמונות</li>
+        <li>אחרי כל עבודה הלקוח מקבל הודעה עם קישור לביקורת</li>
+        <li>יותר כוכבים, יותר ביקורות, מקום גבוה יותר במפות</li>
+        <li>מענה מקצועי לביקורות</li>
+      </ul>
+    </div>
+    <div class="part">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"/></svg></div>
+      <h3>ניהול חודשי</h3>
+      <ul>
+        <li>מעקב שבועי אחרי כל חיפוש שהביא שיחה</li>
+        <li>חוסמים חיפושים שמבזבזים לך כסף</li>
+        <li>משפרים מודעות ומחירים לפי התוצאות</li>
+        <li>דוח חודשי פשוט: כמה שיחות ומה עלתה כל אחת</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">איך זה עובד</h2>
+  <div class="steps">
+    <div class="step"><h3>שיחת היכרות</h3><p>מדברים 15 דקות. אני שואל איזה עבודות אתה הכי רוצה, באיזה ערים ובאיזה שעות אתה עובד.</p></div>
+    <div class="step"><h3>הקמה</h3><p>אני בונה את הקמפיין, מסדר את פרופיל הגוגל עסקים ומפעיל את בקשות הביקורות. אתה לא צריך לגעת בכלום.</p></div>
+    <div class="step"><h3>הטלפון מצלצל</h3><p>השיחות נכנסות, ואני ממשיך לשפר כל שבוע. בסוף כל חודש אתה מקבל דוח ברור.</p></div>
+  </div>
+  <div class="extra">
+    <div><b>אין לך אתר?</b><p>נבנה לך דף אחד פשוט: שם העסק, אזורי שירות, כפתור חיוג וביקורות. זה כל מה שצריך.</p></div>
+    <div><b>אין לך גוגל עסקים?</b><p>נפתח ונאמת לך פרופיל. בינתיים הקמפיין כבר רץ ומביא שיחות.</p></div>
+  </div>
+</section>
+
+<section id="price">
+  <h2 class="sec-title">ההצעה</h2>
+  <div class="plan">
+    <div class="plan-main">
+      <div class="plan-name">מכונת הלקוחות</div>
+      <span class="badge">עכשיו 77% הנחה בדמי הניהול החודשיים!</span>
+      <p class="why">איך זה אפשרי? בינה מלאכותית עושה אצלנו את העבודה השוטפת: קוראת כל חיפוש, חוסמת בזבוז ומשפרת מודעות. זה חוסך לנו שעות, ואת החיסכון אנחנו מעבירים אליכם.</p>
+    </div>
+    <ul class="plan-list">
+      <li>קמפיין שיחות בגוגל לשירות ולערים שלך</li>
+      <li>קמפיין דירוגים ושיפור פרופיל גוגל עסקים</li>
+      <li>מעקב ושיפור שבועי</li>
+      <li>דוח חודשי: כמה שיחות ומה עלתה כל אחת</li>
+    </ul>
+  </div>
+  <p class="fine">תקציב הפרסום לגוגל משולם ישירות מהכרטיס שלך לגוגל ואינו כלול בדמי הניהול. חשבון הפרסום רשום על שמך ונשאר שלך.</p>
+</section>
+
+<section>
+  <h2 class="sec-title">שאלות שבעלי מקצוע שואלים</h2>
+  <div class="faq">
+    <details><summary>כמה אני צריך לשים בגוגל?</summary><p>זה תלוי באזור ובשירות. בשיחת ההיכרות נקבע תקציב יומי שנוח לך, ותמיד אפשר להגדיל או להקטין.</p></details>
+    <details><summary>למה רק שיחות ולא טפסים?</summary><p>כי לקוח עם נזילה או הפסקת חשמל לא ממלא טפסים. הוא מתקשר. שיחה היא הליד הכי חם שיש.</p></details>
+    <details><summary>איך אני יודע שזה עובד?</summary><p>כל שיחה מהקמפיין נספרת, ונספרות רק שיחות מעל דקה. בסוף החודש אתה רואה בדיוק כמה שיחות נכנסו ומה עלתה כל אחת.</p></details>
+    <details><summary>מה אם אני בעבודה ולא עונה?</summary><p>נגדיר שהמודעות יופיעו רק בשעות שנוח לך לענות, כדי שלא תשלם על שיחות שהולכות לאיבוד.</p></details>
+  </div>
+</section>
+
+<div class="final">
+  <h2>מוכן שהטלפון יתחיל לצלצל?</h2>
+  <span class="badge">עכשיו 77% הנחה בדמי הניהול החודשיים!</span>
+  <a class="btn wa-link" href="https://wa.me/972544655937" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>
+    שלח לי הודעה בוואטסאפ
+  </a>
+  <div class="num">או שמור את המספר: <code id="phone">054-4655937</code><button class="copy" id="copyBtn" type="button">העתק</button></div>
+</div>
+
+<footer>זרם לקוחות · גיוס לקוחות לאנשי מקצוע שעובדים עם הידיים · ליאור עקירב</footer>
+</div>
+
+<script>
+(function(){
+  var msg = encodeURIComponent("היי ליאור, אני בעל מקצוע ורוצה לשמוע על מכונת הלקוחות של זרם לקוחות");
+  document.querySelectorAll(".wa-link").forEach(function(a){ a.href = "https://wa.me/972544655937?text=" + msg; });
+  var b = document.getElementById("copyBtn");
+  b.addEventListener("click", function(){
+    var t = document.getElementById("phone").textContent;
+    var done = function(){ b.textContent = "הועתק"; setTimeout(function(){ b.textContent = "העתק"; }, 1800); };
+    var fallback = function(){ var r = document.createRange(); r.selectNodeContents(document.getElementById("phone")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(t).then(done, fallback); } catch(e){ fallback(); }
+  });
+})();
+</script>
+
+</body></html>
