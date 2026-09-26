@@ -50,7 +50,7 @@ header.top{display:flex;justify-content:space-between;align-items:center;padding
 .log{background:var(--deep);color:var(--deep-ink);border-radius:18px;padding:22px;font-size:15px;position:relative}
 .log-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:13px;opacity:.75}
 .tag{border:1px solid currentColor;border-radius:999px;padding:2px 10px;font-size:12px}
-.call{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding-block:12px;border-top:1px solid rgba(255,255,255,.12)}
+.call{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;padding-block:12px;border-top:1px solid rgba(255,255,255,.12)}
 .call:first-of-type{border-top:0}
 .dot{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center}
 .dot svg{width:18px;height:18px}
@@ -164,28 +164,24 @@ footer{padding-block:0 32px;font-size:13px;color:var(--muted)}
   </div>
 
   <div class="log" aria-label="דוגמה ללוח שיחות נכנסות">
-    <div class="log-head"><span>שיחות מהקמפיין · היום</span><span class="tag">דוגמה להמחשה</span></div>
+    <div class="log-head"><span>ככה נראה יום עם מכונת הלקוחות</span><span class="tag">דוגמה להמחשה</span></div>
     <div class="call ring">
       <div class="dot"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z"/></svg></div>
-      <div><b>נכנסת עכשיו</b><small>חיפש: איתור נזילות רמת גן</small></div>
-      <div class="dur">··· </div>
+      <div><b>שיחה נכנסת</b><small>לקוח חיפש: איתור נזילות רמת גן</small></div>
     </div>
     <div class="call">
       <div class="dot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z"/></svg></div>
-      <div><b>11:42</b><small>חיפש: חשמלאי מוסמך פתח תקווה</small></div>
-      <div class="dur">3:18</div>
+      <div><b>11:42</b><small>לקוח חיפש: חשמלאי מוסמך פתח תקווה</small></div>
     </div>
     <div class="call">
       <div class="dot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z"/></svg></div>
-      <div><b>09:05</b><small>חיפש: אינסטלטור גבעתיים</small></div>
-      <div class="dur">2:04</div>
+      <div><b>09:05</b><small>לקוח חיפש: אינסטלטור גבעתיים</small></div>
     </div>
     <div class="call">
       <div class="dot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z"/></svg></div>
-      <div><b>07:51</b><small>חיפש: שיפוץ אמבטיה חולון</small></div>
-      <div class="dur">4:37</div>
+      <div><b>07:51</b><small>לקוח חיפש: שיפוץ אמבטיה חולון</small></div>
     </div>
-    <div class="log-foot"><span>נספרות רק שיחות מעל 60 שניות</span><span>דוח מלא בסוף החודש</span></div>
+    <div class="log-foot"><span>לקוחות שחיפשו בגוגל ומתקשרים ישר אליך</span></div>
   </div>
 </div>
 
@@ -235,10 +231,10 @@ footer{padding-block:0 32px;font-size:13px;color:var(--muted)}
       <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"/></svg></div>
       <h3>ניהול חודשי</h3>
       <ul>
-        <li>מעקב שבועי אחרי כל חיפוש שהביא שיחה</li>
+        <li>מעקב שבועי אחרי החיפושים שהמודעות מופיעות בהם</li>
         <li>חוסמים חיפושים שמבזבזים לך כסף</li>
         <li>משפרים מודעות ומחירים לפי התוצאות</li>
-        <li>דוח חודשי פשוט: כמה שיחות ומה עלתה כל אחת</li>
+        <li>עדכון חודשי: מה עשינו ומה שיפרנו</li>
       </ul>
     </div>
   </div>
@@ -249,7 +245,7 @@ footer{padding-block:0 32px;font-size:13px;color:var(--muted)}
   <div class="steps">
     <div class="step"><h3>שיחת היכרות</h3><p>מדברים 15 דקות. אני שואל איזה עבודות אתה הכי רוצה, באיזה ערים ובאיזה שעות אתה עובד.</p></div>
     <div class="step"><h3>הקמה</h3><p>אני בונה את הקמפיין, מסדר את פרופיל הגוגל עסקים ומפעיל את בקשות הביקורות. אתה לא צריך לגעת בכלום.</p></div>
-    <div class="step"><h3>הטלפון מצלצל</h3><p>השיחות נכנסות, ואני ממשיך לשפר כל שבוע. בסוף כל חודש אתה מקבל דוח ברור.</p></div>
+    <div class="step"><h3>הטלפון מצלצל</h3><p>השיחות נכנסות, ואני ממשיך לשפר כל שבוע. בסוף כל חודש אתה מקבל עדכון קצר על מה שעשינו.</p></div>
   </div>
   <div class="extra">
     <div><b>אין לך אתר?</b><p>נבנה לך דף אחד פשוט: שם העסק, אזורי שירות, כפתור חיוג וביקורות. זה כל מה שצריך.</p></div>
@@ -269,7 +265,7 @@ footer{padding-block:0 32px;font-size:13px;color:var(--muted)}
       <li>קמפיין שיחות בגוגל לשירות ולערים שלך</li>
       <li>קמפיין דירוגים ושיפור פרופיל גוגל עסקים</li>
       <li>מעקב ושיפור שבועי</li>
-      <li>דוח חודשי: כמה שיחות ומה עלתה כל אחת</li>
+      <li>עדכון חודשי: מה עשינו ומה שיפרנו</li>
     </ul>
   </div>
   <p class="fine">תקציב הפרסום לגוגל משולם ישירות מהכרטיס שלך לגוגל ואינו כלול בדמי הניהול. חשבון הפרסום רשום על שמך ונשאר שלך.</p>
@@ -280,7 +276,7 @@ footer{padding-block:0 32px;font-size:13px;color:var(--muted)}
   <div class="faq">
     <details><summary>כמה אני צריך לשים בגוגל?</summary><p>זה תלוי באזור ובשירות. בשיחת ההיכרות נקבע תקציב יומי שנוח לך, ותמיד אפשר להגדיל או להקטין.</p></details>
     <details><summary>למה רק שיחות ולא טפסים?</summary><p>כי לקוח עם נזילה או הפסקת חשמל לא ממלא טפסים. הוא מתקשר. שיחה היא הליד הכי חם שיש.</p></details>
-    <details><summary>איך אני יודע שזה עובד?</summary><p>כל שיחה מהקמפיין נספרת, ונספרות רק שיחות מעל דקה. בסוף החודש אתה רואה בדיוק כמה שיחות נכנסו ומה עלתה כל אחת.</p></details>
+    <details><summary>איך אני יודע שזה עובד?</summary><p>אתה תרגיש את זה בטלפון. בסוף כל חודש נדבר, תספר לי כמה פניות הגיעו ומאיזה סוג, ולפי זה נחדד את הקמפיין.</p></details>
     <details><summary>מה אם אני בעבודה ולא עונה?</summary><p>נגדיר שהמודעות יופיעו רק בשעות שנוח לך לענות, כדי שלא תשלם על שיחות שהולכות לאיבוד.</p></details>
   </div>
 </section>
@@ -295,7 +291,12 @@ footer{padding-block:0 32px;font-size:13px;color:var(--muted)}
   <div class="num">או שמור את המספר: <code id="phone">054-4655937</code><button class="copy" id="copyBtn" type="button">העתק</button></div>
 </div>
 
-<footer>זרם לקוחות · גיוס לקוחות לאנשי מקצוע שעובדים עם הידיים · ליאור עקירב</footer>
+<footer>זרם לקוחות · גיוס לקוחות לאנשי מקצוע שעובדים עם הידיים · ליאור עקירב
+  <details class="statement" id="a11y-statement"><summary>הצהרת נגישות</summary>
+    <p>אנחנו רואים חשיבות בהנגשת הדף לכל אדם, כולל אנשים עם מוגבלות. בדף יש תפריט נגישות (הכפתור הכחול בפינה) שמאפשר להגדיל טקסט, להגביר ניגודיות, להדגיש קישורים, להחליף לגופן קריא ולעצור אנימציות. אפשר לנווט בדף גם באמצעות המקלדת בלבד.</p>
+    <p>אם נתקלת בבעיית נגישות או שאתה צריך את המידע בדרך אחרת, אפשר לפנות לליאור עקירב בוואטסאפ או בטלפון 054-4655937, ונטפל בפנייה בהקדם. עדכון אחרון של ההצהרה: ספטמבר 2026.</p>
+  </details>
+</footer>
 </div>
 
 <script>
@@ -309,6 +310,88 @@ footer{padding-block:0 32px;font-size:13px;color:var(--muted)}
     var fallback = function(){ var r = document.createRange(); r.selectNodeContents(document.getElementById("phone")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
     try { navigator.clipboard.writeText(t).then(done, fallback); } catch(e){ fallback(); }
   });
+})();
+</script>
+
+<style>
+.a11y-btn{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:52px;height:52px;border-radius:50%;border:0;background:#1D4ED8;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.a11y-btn svg{width:30px;height:30px}
+.a11y-panel{position:fixed;left:16px;bottom:calc(78px + env(safe-area-inset-bottom,0px));z-index:50;width:min(300px,calc(100vw - 32px));background:#fff;color:#111;border:2px solid #1D4ED8;border-radius:14px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.25);font-family:Arial,sans-serif;font-size:15px;direction:rtl}
+.a11y-panel h2{font-family:Arial,sans-serif;font-size:18px;font-weight:700;margin:0 0 12px}
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.a11y-grid button{font:inherit;font-size:14px;background:#F1F5F9;color:#111;border:1.5px solid #CBD5E1;border-radius:10px;padding:10px 8px;cursor:pointer;text-align:center}
+.a11y-grid button[aria-pressed="true"]{background:#1D4ED8;color:#fff;border-color:#1D4ED8}
+.a11y-foot{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.a11y-foot button,.a11y-foot a{font:inherit;font-size:14px;background:none;border:0;color:#1D4ED8;text-decoration:underline;cursor:pointer;padding:0}
+.a11y-close{position:absolute;left:10px;top:8px;background:none;border:0;font-size:22px;cursor:pointer;color:#111;line-height:1}
+.a11y-btn:focus-visible,.a11y-panel button:focus-visible,.a11y-panel a:focus-visible{outline:3px solid #F59E0B;outline-offset:2px}
+/* modes */
+html.a11y-fs1 .wrap{zoom:1.15}
+html.a11y-fs2 .wrap{zoom:1.3}
+html.a11y-fs3 .wrap{zoom:1.45}
+html.a11y-contrast{--paper:#FFFFFF;--surface:#FFFFFF;--ink:#000000;--muted:#000000;--line:#000000;--deep:#000000;--deep-ink:#FFFFFF;--copper:#8A3300;--copper-soft:#FFF1B8;--water:#003B8E;--wa:#0B5E2E;color-scheme:light}
+html.a11y-contrast .log,html.a11y-contrast .final{border:2px solid #000}
+html.a11y-gray .wrap{filter:grayscale(1)}
+html.a11y-links .wrap a{text-decoration:underline!important;outline:2px dashed currentColor;outline-offset:3px}
+html.a11y-font .wrap,html.a11y-font .wrap *{font-family:Arial,"Arial Hebrew",sans-serif!important;letter-spacing:.01em}
+html.a11y-motion *,html.a11y-motion *::before,html.a11y-motion *::after{animation:none!important;transition:none!important}
+html.a11y-cursor,html.a11y-cursor *{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l16 10-7 1.5L9.5 21z' fill='black' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E") 4 2,auto!important}
+.statement{margin-top:10px}
+.statement summary{cursor:pointer;text-decoration:underline;font-weight:400;display:inline}
+.statement summary::after{content:none}
+.statement p{margin-top:8px;max-width:48em}
+</style>
+
+<button class="a11y-btn" id="a11yBtn" type="button" aria-label="פתיחת תפריט נגישות" aria-expanded="false" aria-controls="a11yPanel">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M20 8.5c0 .6-.4 1-1 1.1l-4.5.7v3.4l1.9 6.9a1 1 0 0 1-1.9.6L12.7 15h-1.4l-1.8 6.2a1 1 0 0 1-1.9-.6l1.9-6.9v-3.4L5 9.6a1 1 0 1 1 .3-2l4.4.6h4.6l4.4-.6c.7-.1 1.3.3 1.3.9Z"/></svg>
+</button>
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות" hidden>
+  <button class="a11y-close" id="a11yClose" type="button" aria-label="סגירת תפריט נגישות">×</button>
+  <h2>נגישות</h2>
+  <div class="a11y-grid">
+    <button type="button" id="a11yBigger">הגדלת טקסט</button>
+    <button type="button" id="a11ySmaller">הקטנת טקסט</button>
+    <button type="button" data-mode="contrast" aria-pressed="false">ניגודיות גבוהה</button>
+    <button type="button" data-mode="gray" aria-pressed="false">גווני אפור</button>
+    <button type="button" data-mode="links" aria-pressed="false">הדגשת קישורים</button>
+    <button type="button" data-mode="font" aria-pressed="false">גופן קריא</button>
+    <button type="button" data-mode="motion" aria-pressed="false">עצירת אנימציות</button>
+    <button type="button" data-mode="cursor" aria-pressed="false">סמן גדול</button>
+  </div>
+  <div class="a11y-foot">
+    <button type="button" id="a11yReset">איפוס הגדרות</button>
+    <a href="#a11y-statement" id="a11yStmtLink">הצהרת נגישות</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, KEY="zerem-a11y";
+  var state={fs:0,modes:[]};
+  try{var saved=JSON.parse(localStorage.getItem(KEY)||"null"); if(saved&&typeof saved.fs==="number"&&Array.isArray(saved.modes)) state=saved;}catch(e){}
+  var btn=document.getElementById("a11yBtn"), panel=document.getElementById("a11yPanel");
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+  function apply(){
+    root.classList.remove("a11y-fs1","a11y-fs2","a11y-fs3");
+    if(state.fs>0) root.classList.add("a11y-fs"+state.fs);
+    panel.querySelectorAll("[data-mode]").forEach(function(b){
+      var m=b.getAttribute("data-mode"), on=state.modes.indexOf(m)>-1;
+      root.classList.toggle("a11y-"+m,on); b.setAttribute("aria-pressed",on?"true":"false");
+    });
+  }
+  function toggle(open){panel.hidden=!open; btn.setAttribute("aria-expanded",open?"true":"false"); if(open) panel.querySelector("button:not(.a11y-close)").focus(); else btn.focus();}
+  btn.addEventListener("click",function(){toggle(panel.hidden);});
+  document.getElementById("a11yClose").addEventListener("click",function(){toggle(false);});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!panel.hidden) toggle(false);});
+  document.getElementById("a11yBigger").addEventListener("click",function(){state.fs=Math.min(3,state.fs+1);apply();save();});
+  document.getElementById("a11ySmaller").addEventListener("click",function(){state.fs=Math.max(0,state.fs-1);apply();save();});
+  panel.querySelectorAll("[data-mode]").forEach(function(b){b.addEventListener("click",function(){
+    var m=b.getAttribute("data-mode"), i=state.modes.indexOf(m);
+    if(i>-1) state.modes.splice(i,1); else state.modes.push(m); apply(); save();
+  });});
+  document.getElementById("a11yReset").addEventListener("click",function(){state={fs:0,modes:[]};apply();save();});
+  document.getElementById("a11yStmtLink").addEventListener("click",function(){var d=document.getElementById("a11y-statement"); if(d) d.open=true; toggle(false);});
+  apply();
 })();
 </script>
 
