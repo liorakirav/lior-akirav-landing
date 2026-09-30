@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מחשבון רווחיות - לידים לאינסטלטורים</title>
+<style>
+  :root { --bg:#f6f7fb; --card:#fff; --ink:#1b2333; --mute:#6b7488; --line:#e2e6f0; --acc:#1f3864; --pos:#0a7d4b; --neg:#c0392b; --inp:#fffbe0; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#12151d; --card:#1b2030; --ink:#e8ebf3; --mute:#98a1b8; --line:#2c3350; --acc:#8fb0ff; --pos:#4cd68f; --neg:#ff7b6b; --inp:#2a2a1a; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:Arial, "Segoe UI", sans-serif; line-height:1.5; }
+  .wrap { max-width:1000px; margin:0 auto; padding:24px 16px 48px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  p.sub { color:var(--mute); margin:0 0 20px; font-size:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; margin-bottom:20px; overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:14px; min-width:560px; }
+  th, td { padding:8px 10px; border-bottom:1px solid var(--line); text-align:right; }
+  th { color:var(--acc); font-size:13px; }
+  td.n { text-align:left; direction:ltr; font-variant-numeric:tabular-nums; }
+  input { width:100%; max-width:110px; padding:6px 8px; border:1px solid var(--line); border-radius:6px; background:var(--inp); color:var(--ink); font-size:14px; text-align:left; direction:ltr; }
+  tr.tot td { font-weight:bold; }
+  tr.sec td { background:var(--bg); color:var(--mute); font-size:12px; font-weight:bold; }
+  .pos { color:var(--pos); } .neg { color:var(--neg); }
+  .note { color:var(--mute); font-size:12px; }
+  h2 { font-size:16px; margin:0 0 10px; }
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-bottom:20px; }
+  .kpi { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+  .kpi b { display:block; font-size:22px; direction:ltr; text-align:right; }
+  .kpi span { font-size:12px; color:var(--mute); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>מחשבון רווחיות - פלטפורמת לידים לאינסטלטורים</h1>
+  <p class="sub">שנו את התאים הצהובים והתוצאות מתעדכנות. כל המספרים חודשיים אלא אם צוין אחרת. האתר נבנה בעצמכם, לכן אין עלות פיתוח. ההנחות הן הערכות שלי ולא נתוני שוק, ויש לאמת אותן בקמפיין ניסיון.</p>
+
+  <p class="sub"><a href="https://drive.google.com/file/d/1bhYpkGkPkjFpMbO1wuz4hre7xTnrGJTv/view?usp=drivesdk">גרסת אקסל של המחשבון (Google Drive)</a></p>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="card">
+    <table id="model"></table>
+  </div>
+
+  <div class="card">
+    <h2>רגישות: רווח חודשי לפני מס בשלב 1, לפי עלות ליד ומחיר מנירה</h2>
+    <table id="sens"></table>
+    <p class="note">שאר ההנחות נלקחות מעמודת שלב 1 למעלה.</p>
+  </div>
+
+  <p class="note">המס הוא הערכה גסה בלבד. יש להתייעץ עם רואה חשבון. שכר עצמי בשלב 1 לא נספר.</p>
+</div>
+
+<script>
+const stages = ["שלב 1: אזור אחד, ידני", "שלב 2: כמה אזורים ומקצועות", "שלב 3: כל הארץ, SEO ועמלות"];
+const inputs = [
+  ["leads","לידים שנרכשים בחודש",[450,2000,5000],"n"],
+  ["cpl","עלות ליד (₪)",[35,25,20],"n"],
+  ["valid","אחוז לידים תקינים (%)",[75,78,80],"n"],
+  ["price","מחיר מכירה לליד תקין (₪)",[80,90,100],"n"],
+  ["extra","הכנסה נוספת: עמלות ומנויים (₪)",[0,8000,30000],"n"],
+  ["fixed","עלויות קבועות: אתר, דומיין, כלים (₪)",[400,1500,8000],"n"],
+  ["staff","שכר צוות ושיווק אורגני (₪)",[0,15000,80000],"n"],
+  ["refund","החזרים וקרדיט על לידים (% מהכנסת לידים)",[5,5,5],"n"],
+  ["tax","שיעור מס משוער (%)",[20,25,25],"n"],
+];
+const fmt = v => (v<0?"-":"") + Math.round(Math.abs(v)).toLocaleString("en-US") + " ₪";
+const pct = v => (v*100).toFixed(1) + "%";
+const cls = v => v<0 ? "neg" : (v>0 ? "pos" : "");
+
+function calc(p) {
+  const validLeads = p.leads * p.valid/100;
+  const leadRev = validLeads * p.price;
+  const refunds = -leadRev * p.refund/100;
+  const rev = leadRev + refunds + p.extra;
+  const ads = p.leads * p.cpl;
+  const exp = ads + p.fixed + p.staff;
+  const pre = rev - exp;
+  const tax = Math.max(0, pre) * p.tax/100;
+  const net = pre - tax;
+  return { validLeads, leadRev, refunds, rev, ads, exp, pre, tax, net, annual: net*12,
+    margin: rev ? pre/rev : 0, cpv: p.valid ? p.cpl/(p.valid/100) : 0,
+    be: p.price * p.valid/100 * (1 - p.refund/100) };
+}
+function read(i) {
+  const p = {};
+  inputs.forEach(([k]) => { p[k] = parseFloat(document.getElementById(k+i).value) || 0; });
+  return p;
+}
+function build() {
+  let h = "<tr><th>פרמטר</th>" + stages.map(s=>`<th>${s}</th>`).join("") + "</tr>";
+  inputs.forEach(([k,label,vals]) => {
+    h += `<tr><td>${label}</td>` + vals.map((v,i)=>`<td><input id="${k}${i}" type="number" value="${v}"></td>`).join("") + "</tr>";
+  });
+  h += `<tr class="sec"><td colspan="4">חישובים</td></tr><tbody id="out"></tbody>`;
+  document.getElementById("model").innerHTML = h;
+  document.querySelectorAll("#model input").forEach(e => e.addEventListener("input", render));
+  render();
+}
+function render() {
+  const P = [0,1,2].map(read), R = P.map(calc);
+  const rows = [
+    ["לידים תקינים", r=>Math.round(r.validLeads).toLocaleString("en-US"), false],
+    ["הכנסה מלידים", r=>fmt(r.leadRev)],
+    ["החזרים וקרדיט", r=>fmt(r.refunds)],
+    ["סה\"כ הכנסה", r=>fmt(r.rev), true],
+    ["הוצאות פרסום", r=>fmt(r.ads)],
+    ["סה\"כ הוצאות (פרסום + קבועות + צוות)", r=>fmt(r.exp), true],
+    ["רווח לפני מס - חודשי", r=>fmt(r.pre), true, "pre"],
+    ["מס משוער", r=>fmt(r.tax)],
+    ["רווח נקי - חודשי", r=>fmt(r.net), true, "net"],
+    ["רווח נקי - שנתי", r=>fmt(r.annual), true, "annual"],
+    ["שולי רווח (לפני מס)", r=>pct(r.margin)],
+    ["עלות לליד תקין", r=>fmt(r.cpv)],
+    ["עלות ליד מקסימלית לאיזון", r=>fmt(r.be)],
+  ];
+  document.getElementById("out").innerHTML = rows.map(([l,f,b,k]) =>
+    `<tr class="${b?'tot':''}"><td>${l}</td>` + R.map(r=>`<td class="n ${k?cls(r[k]):''}">${f(r)}</td>`).join("") + "</tr>").join("");
+  document.getElementById("kpis").innerHTML = R.map((r,i)=>
+    `<div class="kpi"><span>${stages[i]}<br>רווח נקי חודשי</span><b class="${cls(r.net)}">${fmt(r.net)}</b><span>שנתי: ${fmt(r.annual)}</span></div>`).join("");
+  // sensitivity on stage 1
+  const p = P[0], prices=[60,80,100,120], cpls=[20,30,40,50,60];
+  let s = "<tr><th>עלות ליד \\ מחיר מכירה</th>" + prices.map(x=>`<th>${x} ₪</th>`).join("") + "</tr>";
+  cpls.forEach(c => {
+    s += `<tr><td><b>${c} ₪</b></td>` + prices.map(pr => {
+      const v = calc({...p, cpl:c, price:pr}).pre;
+      return `<td class="n ${cls(v)}">${fmt(v)}</td>`;
+    }).join("") + "</tr>";
+  });
+  document.getElementById("sens").innerHTML = s;
+}
+build();
+</script>
+</body>
+</html>
